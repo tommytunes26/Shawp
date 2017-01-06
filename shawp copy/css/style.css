@@ -1,0 +1,167 @@
+@import "https://fonts.googleapis.com/css?family=Molle:400i";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 430px;
+    top: 0; left: 0; right: 0; bottom: 0; background-color: #6dabe3;    
+    background: -webkit-linear-gradient(#6dabe3, #297dc7);
+    background: -o-linear-gradient(#6dabe3, #297dc7);
+    background: -moz-linear-gradient(#6dabe3, #297dc7);
+    background: linear-gradient(#6dabe3, #297dc7);
+}
+
+/*Navbar-----------------------------*/
+
+.navbar {
+    min-height: 100px;
+    width: 100%;
+    background-color: #297dc7;
+    border-radius: 0;
+    box-shadow: 0 0 20px #000;
+    overflow-x: hidden;
+}
+
+.logo {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-image: url('../images/logo.png');
+    background-size: contain;
+}
+
+li {
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+    font-size: 18pt;
+    height: 55px;
+    margin-top: 22px;
+}
+
+.right {
+    float: right;
+    margin-right: 10px;
+}
+
+.nav > li > a {
+    line-height: 35px;
+}
+
+.navbar-nav > button:hover, 
+li > a:hover {
+    background-color: #eee;
+    border-radius: 10px;
+}
+
+.resize {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav > li > a > img {
+    margin-top: -5px;
+}
+
+
+/*Container-------------------------*/
+
+#container {
+    min-height: 100%;
+    position:relative;
+}
+
+#body {
+    padding-bottom: 70px;
+}
+
+#footer {
+    position: absolute;
+    height: 50px;
+    bottom: 0;
+    width:100%;
+    background-color: rgba(14, 84, 145, 0.67);
+    padding: 1rem;
+}
+
+form {
+    max-width: 600px;
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px #000;    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group > h1 > span {
+    font-family: 'Molle', cursive;
+    font-size: 70pt;
+}
+
+.center-contents {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 485px;
+    padding-left: 5px;
+}
+
+.pop {
+    color: rgba(41, 125, 199, 0.8);
+    text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+}
+
+.center {
+    text-align: center;
+}
+
+.last {
+    margin-top: 1em;
+}
+
+.verticle-center {
+    min-height: 50%;  
+    min-height: 50vh; 
+    display: flex;
+    align-items: center;
+}
+
+.input-group {
+    margin-top: 1em;
+}
+
+
+
+.signature {
+    float: right;
+    margin-right: 1em;
+    color: #fff;
+}
+
+.signature span {
+    font-style: italic;
+}
+
+h4 {
+    margin-top: 20px;
+}
+
+.set {
+    background-color: #707477;
+    border-color: #585858;
+}
+
+.set:hover {
+    background-color: #535353;
+    border-color: #404040;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+
