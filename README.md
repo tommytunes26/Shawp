@@ -1,6 +1,8 @@
 # Shawp
 <i>A school store user interface...</i>
 
+<img src="store.jpg" />
+
 The purpose of this site is to manage a points system developed by a school.
 
 It has <b>two</b> UIs to work from. 
