@@ -42,39 +42,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if ($count > 0) {
                 
-                //DB data--------------------------
-                
-                //Select all student data
-                $sqli = "SELECT * FROM students";
-                $result = mysqli_query($conn, $sqli);
-                $row = $result->fetch_array(MYSQLI_ASSOC);
-                
-                //----------------------------------
-                
-                //Verify table is not empty
-                if ($result->num_rows > 0) {
-                    
-                    $i = 1;                
-                    //Add array from file to DB
-                    foreach ($id as $stu){
-                        
-                        //Math
-                        $add = $addPoints + $row['points'];
-                        $sql = "
-                        INSERT INTO students (studentID, points) VALUES ('$stu', '$add') 
-                        ON DUPLICATE KEY UPDATE points='$add' ";
+                $i = 1;                
+                //Add array from file to DB
+                foreach ($id as $stu){
 
-                        //Return results
-                        if ($conn->query($sql) === FALSE) {
-                            die('Can\'t add record to database: ' . mysqli_error($conn) . "<br />");
-                        } else {
-                            echo "<p>Added <span style='color:#009106'>$<b>" . $addPoints . "</b></span> to <i>" . $stu . "</i></p>";
-                        }
-                        
-                        //Check with rows in text file
-                        $i < $count;
-                        $i++;
+
+                    //DB data--------------------------
+                    
+                    //Select all student data
+                    $sqli = "SELECT * FROM students";
+                    $result = mysqli_query($conn, $sqli);
+                    $row = $result->fetch_array(MYSQLI_ASSOC);
+
+                    //----------------------------------
+
+                    //Math
+                    $add = $addPoints + $row['points'];
+                    $sql = "
+                    INSERT INTO students (studentID, points) VALUES ('$stu', '$add') 
+                    ON DUPLICATE KEY UPDATE points='$add' ";
+
+                    //Return results
+                    if ($conn->query($sql) === FALSE) {
+                        die('Can\'t add record to database: ' . mysqli_error($conn) . "<br />");
+                    } else {
+                        echo "<p>Added <span style='color:#009106'>$<b>" . $addPoints . "</b></span> to <i>" . $stu . "</i></p>";
                     }
+
+                    //Check with rows in text file
+                    $i < $count;
+                    $i++;
                 }
             }
         }
@@ -90,27 +87,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         //----------------------------------
         
-        //Verify table is not empty
-        if ($result->num_rows > 0) {
-            
-            $before = $addPoints;
-            $addPoints += $row['points'];
+        $before = $addPoints;
+        $addPoints += $row['points'];
 
-            //Update points in table
-            $sql = "
-                INSERT INTO students (studentID, points) VALUES ('$studentID', '$addPoints') 
-                ON DUPLICATE KEY UPDATE points='$addPoints' ";
+        //Update points in table
+        $sql = "
+            INSERT INTO students (studentID, points) VALUES ('$studentID', '$addPoints') 
+            ON DUPLICATE KEY UPDATE points='$addPoints' ";
 
-            //Return results
-            if ($conn->query($sql) === FALSE) {
-                die('Can\'t add record to database: ' . mysqli_error($conn) . "<br />");
-            } else {
-                echo "Added <span style='color:#009106'>$<b>" . $before . "</b></span> to student <i>" . $studentID . "</i>" . '<p> <b>' . "Total Points: " . $addPoints . '</b></p>';
-            }  
-            
+        //Return results
+        if ($conn->query($sql) === FALSE) {
+            die('Can\'t add record to database: ' . mysqli_error($conn) . "<br />");
         } else {
-            echo "<span style='color:#930b00'>No students found!</span>";
-        }
+            echo "Added <span style='color:#009106'>$<b>" . $before . "</b></span> to student <i>" . $studentID . "</i>" . '<p> <b>' . "Total Points: " . $addPoints . '</b></p>';
+        } 
     }
 }
 
