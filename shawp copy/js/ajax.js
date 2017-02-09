@@ -31,7 +31,6 @@ $(document).ready(function (e) {
                             size: "small",
                             backdrop: true,
                             animate: true,
-                            title: 'Success!',
                             message: data,
                         }); 
 
@@ -99,7 +98,6 @@ $(document).ready(function (e) {
                             size: "small",
                             backdrop: true,
                             animate: true,
-                            title: 'Success!',
                             message: "<span style='color:#930b00'>Student not found! </span><p> Please use <b>'Set Points'</b> to add student. </p>",
                         }); 
 
@@ -179,7 +177,6 @@ $(document).ready(function (e) {
                             size: "small",
                             backdrop: true,
                             animate: true,
-                            title: 'Success!',
                             message: data,
                         }); 
 

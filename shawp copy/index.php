@@ -12,50 +12,45 @@ include("logon.php");
 <script src="bootstrap-3.3.7/js/bootstrap.min.js"></script><!-- JavaScript -->
 <script src="js/bootbox.min.js"></script><!-- Bootbox -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-    
 <!--Other links like custom stylesheets and script-->
 <script src="js/ajax.js"></script> <!--Ajax custom-->
 <link rel="stylesheet" href="css/style.css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->  
+<!--Favicons-->
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="images/favicons/manifest.json">
+<meta name="theme-color" content="#ffffff">    
 </head>
 <body>
     <div id="container">
     <nav>
         <div class="navbar">
             <div class="logo"><a href="/"></a></div>
-            <div class="container resize">
-                <ul class="nav right">
-                    <li class="right"><a id="prompt" href="#"><img src="images/lock.png" /> Add Points</a></li>
-                </ul>                
+            <div class="container resize">               
             </div>                
         </div>
     </nav> 
     <div id="body" class="container verticle-center">
     
-        <form class="form-inline" name="frontForm" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <h1 class="center">Let's <span class="pop">Shawp</span></h1>
-                <h4>Enter student ID below with item cost:</h4>
-                
-                <label class="sr-only" for="studentID">Student ID</label>
-                <div class="input-group">
-                    <div class="input-group-addon">ID</div>
-                    <input id="id" type="text" class="form-control" placeholder="Student ID">
-                </div>
-                
-                <label class="sr-only" for="subtract">Amount</label>
-                <div class="input-group">
-                    <div class="input-group-addon">$</div>
-                    <input id="subtract" type="number" class="form-control" placeholder="Amount">
-                </div>
-                <button type="submit" id="submitSubtr" class="btn btn-primary" alt="Purchase" data-toggle="tooltip" title="Subtrack specified amount from student total points">Purchase</button>
-            </div>
-        </form>    
+        <div class="form-group login">
+            <h1 class="center">Let's <span class="pop">Shawp</span></h1>
+            <h4>Sign in to access the Shawp!</h4>
+            <a class="btn btn-primary right" id="prompt" href="#">Login</a>     <div ><a class="btn btn-success" data-toggle="tooltip" title="Check total points for student ID" id="submitBalance" href="#">Check Student Balance</a></div>     
+        </div> 
+        
     </div>
+        
     <div id="footer">
         <div class="signature"><h5>Created by <span>tommyTunes</span></h5></div> 
     </div>
     
-<!--Prompt Menu----------------------------------------->
+<!--Password Prompt Menu----------------------------------------->
     
     <div class="form-content" style="display:none;">
       <form class="form" role="form">
@@ -67,7 +62,23 @@ include("logon.php");
         </form>
     </div>
     </div>
+    
+    <!--Student ID Prompt Menu----------------------------------------->
+    
+    <div class="form-content" style="display:none;">
+      <form class="form" role="form">
+        <div class="form-group">
+          <label for="id">Student ID</label>
+          <input type="text" class="form-control" id="idBalance" name="Student ID" onkeypress="capLock(event)" placeholder="Enter student ID...">
+        </div>
+        <div id="divMayus" style="visibility:hidden">Caps Lock is on.</div>
+        </form>
+    </div>
+    </div>
+    
 <script>
+    
+/*Password Prompt-------------------------------*/
     
 $('#prompt').click(function (){
     
@@ -79,12 +90,12 @@ $('#prompt').click(function (){
         inputType: 'password',
         callback: function (result) {
             var call = result;
-            success(call);
+            pass(call);
          }
     }); 
 });
     
-function success(call){
+function pass(call){
     
     $.ajax({
          url: 'logon.php',
@@ -93,7 +104,7 @@ function success(call){
          success: function(data){
              
             if (data == 'true'){                
-                window.location.replace("backEnd.php");
+                window.location.replace("addFront.php");
             } else if (data == 'null') {
 
             } else {
@@ -107,6 +118,92 @@ function success(call){
     })
         
 }
+
+/*Check student balance---------------------------*/
+    
+$('#submitBalance').click(function (){
+    
+    bootbox.prompt({
+        size: "small",
+        backdrop: true,
+        animate: true,
+        title: "Enter student ID to continue:",
+        inputType: 'text',
+        callback: function (result) {
+            var call = result;
+            success(call);
+         }
+    }); 
+});
+    
+function success(call){
+    
+    var check = call;
+        
+    //Validate if amount has been submitted
+    if (check !== ''){
+
+        event.preventDefault();
+        
+        $.ajax({
+            url: 'checkConfig.php',
+            dataType: 'text',
+            data: {studentID: call},
+            type: 'post',
+            success: function (data) {
+                
+                if ($.trim(data) !== '' ){
+
+                    bootbox.alert({
+                        size: "small",
+                        backdrop: true,
+                        animate: true,
+                        message: data,
+                    }); 
+
+                        // Clear the form.
+                        $('#id').val('');
+                        $('#subtract').val('');
+
+                } else {
+
+                    bootbox.alert({
+                        size: "small",
+                        backdrop: true,
+                        animate: true,
+                        title: "Failed!",
+                        message: "Student not found!",
+                    }); 
+
+                        // Clear the form.
+                        $('#id').val('');
+                        $('#subtract').val('');   
+                }
+            },  
+            error: function(){
+                bootbox.alert({
+                    size: "small",
+                    backdrop: true,
+                    animate: true,
+                    title: 'Failed!',
+                    message: 'ERROR',
+                }); 
+            }
+        });
+
+    } else {
+        bootbox.alert({
+            size: "small",
+            backdrop: true,
+            animate: true,
+            title: 'Failed!',
+            message: 'Please enter a student ID',
+        }); 
+    }
+        
+}
+    
+
     
 function capLock(e){
     

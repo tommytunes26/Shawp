@@ -23,6 +23,11 @@ if(!isset($_SESSION['backEnd']))
 <!--Other links like custom stylesheets and script-->
 <script src="js/ajax.js"></script> <!--Ajax custom-->
 <link rel="stylesheet" href="css/style.css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
 <body>
     <div id="container">
@@ -31,7 +36,8 @@ if(!isset($_SESSION['backEnd']))
             <div class="logo"><a href="/"></a></div>
             <div class="container resize">
                 <ul class="nav right">
-                    <li class="right"><a href="logout.php">Check Out</a></li>
+                    <li class="right"><a class="btn btn-warning" href="logout.php">Sign Out</a></li>
+                    <li class="right"><a class="btn btn-danger" href="addFront.php">Use Points</a></li>
                 </ul>                
             </div>                
         </div>
@@ -56,7 +62,7 @@ if(!isset($_SESSION['backEnd']))
                         <input name="add" id="add" type="number" class="form-control" placeholder="Amount" required>
                     </div>
 
-                    <button class="btn btn-primary" id="submitAdd" type="submit" alt="Add points" data-toggle="tooltip" title="Add specified amount to student ID">+ Add Points</button>
+                    <button class="btn btn-primary set" id="submitSet" type="submit" alt="Set points" data-toggle="tooltip" title="Use to override student ID to specified amount">Set Points</button>
 
                     <div class="form-group last">
                         <label class="sr-only" for="datafile">File input</label>
@@ -64,7 +70,7 @@ if(!isset($_SESSION['backEnd']))
                         <small name="fileHelp" class="form-text text-muted">Select a text file with a list of student IDs.</small>
                     </div>  
 
-                    <button class="btn btn-primary set" id="submitSet" type="submit" alt="Set points" data-toggle="tooltip" title="Use to override student ID to specified amount">Set Points</button>
+                    <button class="btn btn-primary" id="submitAdd" type="submit" alt="Add points" data-toggle="tooltip" title="Add specified amount to student ID">+ Add Points</button>
                 </div>
             </div>
         </form>
