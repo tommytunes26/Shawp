@@ -23,6 +23,7 @@ if(!isset($_SESSION['backEnd']))
 <!--Other links like custom stylesheets and script-->
 <script src="js/ajax.js"></script> <!--Ajax custom-->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/bootbox.css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -53,24 +54,26 @@ if(!isset($_SESSION['backEnd']))
                     <div class="input-group">
                         <label class="sr-only" for="studentID">Student ID</label>
                         <div class="input-group-addon">ID</div>
-                        <input name="studentID" id="id" type="number" class="form-control" placeholder="Student ID">
+                        <input name="studentID" id="id" type="number" class="form-control" placeholder="Student ID" autofocus tabindex="1">
                     </div>
 
                     <div class="input-group">
                         <label class="sr-only" for="add">Add Points</label>
                         <div class="input-group-addon">$</div>
-                        <input name="add" id="add" type="number" class="form-control" placeholder="Amount" required>
+                        <input name="add" id="add" type="number" class="form-control" placeholder="Amount" required tabindex="2">
                     </div>
 
-                    <button class="btn btn-primary set" id="submitSet" type="submit" alt="Set points" data-toggle="tooltip" title="Use to override student ID to specified amount">Set Points</button>
+                    <button class="btn btn-primary" id="submitAdd" type="submit" alt="Add points" data-toggle="tooltip" title="Add specified amount to student ID" tabindex="3">+ Add Points</button>
 
                     <div class="form-group last">
                         <label class="sr-only" for="datafile">File input</label>
                         <input class="form-control-file" type="file" id="file" aria-describedby="fileHelp" alt="Upload file" data-toggle="tooltip" title="Select a text file to upload">
                         <small name="fileHelp" class="form-text text-muted">Select a text file with a list of student IDs.</small>
                     </div>  
-
-                    <button class="btn btn-primary" id="submitAdd" type="submit" alt="Add points" data-toggle="tooltip" title="Add specified amount to student ID">+ Add Points</button>
+                    
+                    <button class="btn btn-primary set" id="submitSet" type="submit" alt="Set points" data-toggle="tooltip" title="Use to override student ID to specified amount" tabindex="4">Set Points</button>
+                    
+                    <input class="btn btn-success" type="button" id="submitPrint" onclick="printSum()" alt="Print points" data-toggle="tooltip" title="Use to print a summary of points" tabindex="5" value="Print Summary" />
                 </div>
             </div>
         </form>

@@ -41,7 +41,8 @@ include("logon.php");
         <div class="form-group login">
             <h1 class="center">Let's <span class="pop">Shawp</span></h1>
             <h4>Sign in to access the Shawp!</h4>
-            <a class="btn btn-primary right" id="prompt" href="#">Login</a>     <div ><a class="btn btn-success" data-toggle="tooltip" title="Check total points for student ID" id="submitBalance" href="#">Check Student Balance</a></div>     
+            <a class="btn btn-primary right" id="prompt" href="#">Login</a>     
+            <div><a class="btn btn-success" data-toggle="tooltip" title="Check total points for student ID" id="submitBalance" href="#">Check Student Balance</a></div>     
         </div> 
         
     </div>

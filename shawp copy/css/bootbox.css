@@ -1,0 +1,49 @@
+/*Bootbox styling-----------------------*/
+
+.bootbox-body table {
+    padding: 2em;
+    float: left;
+    width: 20em;
+}
+
+.bootbox-body tr:nth-child(even) {
+    background-color: #dedede;
+}
+
+.bootbox-body td {
+    padding: .2em;
+    padding-right: 3em;
+    border: 1px solid;
+}
+
+.bootbox-body table b {
+    color: #297dc7;
+}
+
+.btn-container {
+    width: 150px;
+    float: right;
+}
+
+.bootbox-body #dnl-btn {
+    width: 150px;
+}
+
+.bootbox-body #print-btn {
+    margin-top: 1em;
+    width: 150px;
+}
+
+
+.modal-footer {
+    border: none;
+}
+
+.modal-footer > button { 
+    clear: right;
+    width: 150px;
+    float: right;
+    margin-top: 5em;    
+}
+
+/*--------------------------------------*/

@@ -28,7 +28,6 @@ if(!isset($_SESSION['backEnd']))
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-    
 </head>
 <body>
     <div id="container">
@@ -71,7 +70,7 @@ if(!isset($_SESSION['backEnd']))
     <div id="footer">
         <div class="signature"><h5>Created by <span>tommyTunes</span></h5></div> 
     </div>
-
+    
 <script>
     
 function capLock(e){

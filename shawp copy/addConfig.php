@@ -49,13 +49,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     //DB data--------------------------
                     
-                    //Select all student data
-                    $sqli = "SELECT * FROM students";
+                    //Select all student data matching student ID
+                    $sqli = "SELECT * FROM students WHERE studentID = $stu ";
                     $result = mysqli_query($conn, $sqli);
                     $row = $result->fetch_array(MYSQLI_ASSOC);
 
                     //----------------------------------
-
+                    
+                    //For testing
+                    //var_dump($stu);
+                    
                     //Math
                     $add = $addPoints + $row['points'];
                     $sql = "
@@ -66,13 +69,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($conn->query($sql) === FALSE) {
                         die('Can\'t add record to database: ' . mysqli_error($conn) . "<br />");
                     } else {
-                        echo "<p>Added <span style='color:#009106'>$<b>" . $addPoints . "</b></span> to <i>" . $stu . "</i></p>";
+                        //echo "<p>Added <span style='color:#009106'>$<b>" . $addPoints . "</b></span> to <i>" . $stu . "</i></p>";
                     }
 
                     //Check with rows in text file
                     $i < $count;
                     $i++;
                 }
+                
+                //Return results
+                $result = mysqli_query($conn, $sql);
+                if (!$result) {
+                    die('Can\'t add record to database: ' . mysqli_error($conn) . "<br />");
+                } else {
+                    echo "Added <span style='color:#009106'>$<b>" . $addPoints . "</b></span> to <b>" . $count . "</b> student(s). ";
+                } 
             }
         }
             
@@ -80,8 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         //DB data--------------------------
                 
-        //Select all student data
-        $sqli = "SELECT * FROM students";
+        //Select all student data matching student ID
+        $sqli = "SELECT * FROM students WHERE studentID = $studentID ";
         $result = mysqli_query($conn, $sqli);
         $row = $result->fetch_array(MYSQLI_ASSOC);
 
@@ -89,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $before = $addPoints;
         $addPoints += $row['points'];
-
+        
         //Update points in table
         $sql = "
             INSERT INTO students (studentID, points) VALUES ('$studentID', '$addPoints') 

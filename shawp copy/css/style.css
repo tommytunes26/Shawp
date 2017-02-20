@@ -137,7 +137,6 @@ form, .login {
 }
 
 .last {
-    margin-top: 1em;
 }
 
 .verticle-center {
@@ -194,12 +193,19 @@ form .btn {
     border-color: #0c5501;
 }
 
+#submitPrint {
+    width: 100%;
+}
 
+#submitAdd, .last {
+    float: right;
+    margin-top: 1em;
+}
 
-
-
-
-
+#submitPrint, #submitSet {
+    float: left;
+    margin-top: 1em;
+}
 
 
 
